@@ -63,7 +63,7 @@ function useCurl($sURL) {
 	if ($code == 200){
 		$content = $data;
 	} else {
-		$content = "";
+		$content = "error";
 	}
 	curl_close( $ch );
 	return $content;
