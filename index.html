@@ -1,101 +1,96 @@
-<head>
-  <meta charset="UTF-8" />
-  <title></title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <script src="js/jquery.min.js"></script>
-  <script src="js/lunaradio.min.js"></script>
-</head>
-    
-<body style="margin: 0px">
-  <div id="lunaradio"
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Voz Del Aire Radio</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/lunaradio.min.js"></script>
+  </head>
+
+  <body
     style="
-    width: 100%;
-    height: 100%;
-    background-image: url('https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/js/cover.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    -webkit-border-top-left-radius: 0px;
-    -webkit-border-top-right-radius: 0px;
-    -webkit-border-bottom-right-radius: 0px;
-    -webkit-border-bottom-left-radius: 0px;
-    -moz-border-radius-topleft: 0px;
-    -moz-border-radius-topright: 0px;
-    -moz-border-radius-bottomright: 0px;
-    -moz-border-radius-bottomleft: 0px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border: none;'>
-  <div style="overflow:hidden; height:0px; width:0px;"><a href="https://radioplayer.luna-universe.com" title="native html internet radio player plugin">NATIVE INTERNET WEB RADIO PLAYER PLUGIN FOR SHOUTCAST, ICECAST AND RADIONOMY</a> powered by <a href="https://www.sodah-webdesign-agentur.de" title="WordPress Webdesign Agentur Mainz">WordPress Webdesign Agentur Mainz</a></div>
-</div>
+      margin: 0px;
+      backdrop-filter: blur(20px);
+      width: 100%;
+      height: 100vh;
+      background-image: url('https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/img/FONDO.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <div
+      id="lunaradio"
+      style="
+        width: 100%;
+        height: 100vh;
+        background-image: url('https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/img/FONDO.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: none;
+        border: none;
+        max-width: 600px;
+        margin: 0 auto;
+      "
+    ></div>
 
-  <script
-    src="js/jquery-3.2.1.min.js"
-    type="3bc5e4e5245e387f3290c38f-text/javascript"
-  ></script>
-  <script
-    src="js/lunaradio.min.js"
-    type="3bc5e4e5245e387f3290c38f-text/javascript"
-  ></script>
+    <!-- <div id="lunaradio" style="width: 100%; height: 10vh"></div> -->
 
-  <div id="lunaradio" style="width: 100%; height: 550px"></div>
-
-  <script>
-    window.addEventListener("load", function () {
-    lunaRadio("lunaradio",{ token: "",
-		userinterface: "big",
-		backgroundcolor: "rgba(14,16,21,0.5)",
-		fontcolor: "#ffffff",
-		hightlightcolor: "#fa225b",
-		fontname: "",
-		googlefont: "",
-		fontratio: "0.4",
-		radioname: "La Voz Del Aire",
-		scroll: "true",
-		scrollradioname: "left",
-		scrolltitle: "right",
-		coverimage: "https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/js/cover.jpg",
-		onlycoverimage: "false",
-		coverstyle: "circle",
-		usevisualizer: "real",
-		visualizertype: "5",
-		multicolorvisualizer: "true",
-		color1: "#e66c35",
-		color2: "#d04345",
-		color3: "#85a752",
-		color4: "#067dcc",
-		visualizeropacity: "0.9",
-		visualizerghost: "0.0",
-		itunestoken: "1000lIPN",
-		metadatatechnic: "stream-icy-meta",
-		ownmetadataurl: "https://zenoplay.zenomedia.com/api/zenofm/nowplaying/dd1qw8bvbmavv",
-		streamurl: "https://stream.zeno.fm/dd1qw8bvbmavv",
-		streamtype: "other",
-		icecastmountpoint: "dd1qw8bvbmavv",
-		radionomyid: "",
-		radionomyapikey: "",
-		radiojarid: "",
-		radiocoid: "",
-		shoutcastpath: "/;?type=http&nocache=107036",
-		shoutcastid: "1",
-		streamsuffix: "#",
-		metadatainterval: "10000",
-		volume: "90",
-		debug: "false",
-		uselocalstorage: "false",
-		autoplay: "false",
-		displayliveicon: "false",
-		displayvisualizericon: "false",
-	  usestreamcorsproxy: "false", 
-	  corsproxy: "http://api.allorigins.win/get?url=https://zenoplay.zenomedia.com/api/zenofm/nowplaying/dd1qw8bvbmavv",
-	});
-});
-</script>
-  <script
-    src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
-    data-cf-settings="3bc5e4e5245e387f3290c38f-|49"
-    defer=""
-  ></script>
-</body>
+    <script>
+      window.addEventListener('load', function () {
+        lunaRadio('lunaradio', {
+          token: '',
+          userinterface: 'big',
+          backgroundcolor: 'rgba(14,16,21,0.5)',
+          fontcolor: '#ffffff',
+          hightlightcolor: '#fa225b',
+          fontname: '',
+          googlefont: '',
+          fontratio: '0.4',
+          radioname: 'La Voz Del Aire',
+          scroll: 'false',
+          scrollradioname: 'right',
+          scrolltitle: 'right',
+          coverimage:
+            'https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/img/logo.png',
+          onlycoverimage: 'false',
+          coverstyle: 'circle',
+          usevisualizer: 'real',
+          visualizertype: '6',
+          multicolorvisualizer: 'true',
+          color1: '#e66c35',
+          color2: '#d04345',
+          color3: '#85a752',
+          color4: '#067dcc',
+          visualizeropacity: '0.9',
+          visualizerghost: '0.0',
+          metadatatechnic: 'none',
+          ownmetadataurl:
+            'https://zenoplay.zenomedia.com/api/zenofm/nowplaying/dd1qw8bvbmavv',
+          streamurl: 'https://stream.zeno.fm/',
+          streamtype: 'other',
+          icecastmountpoint: 'dd1qw8bvbmavv',
+          shoutcastpath: '/;?type=http&nocache=107036',
+          streamsuffix: 'dd1qw8bvbmavv.mp3?',
+          metadatainterval: '100000',
+          volume: '100',
+          debug: 'false',
+          uselocalstorage: 'false',
+          autoplay: 'true',
+          displayliveicon: 'true',
+          displayvisualizericon: 'false',
+          usestreamcorsproxy: 'false',
+          corsproxy: '',
+        });
+      });
+    </script>
+    <script
+      src="https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/js/rocket-loader.min.js"
+      data-cf-settings="3bc5e4e5245e387f3290c38f-|49"
+      defer
+    ></script>
+  </body>
+</html>
