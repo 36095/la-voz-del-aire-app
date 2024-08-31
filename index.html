@@ -2,17 +2,25 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, shrink-to-fit=no"
+    />
     <title>La Voz Del Aire Radio</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/favicon.ico" />
-    <script
-      src="/js/jquery.min.js"
-      defer
-    ></script>
-    <script
-      src="/js/lunaradio.min.js"
-      defer
-    ></script>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/favicon.ico"
+    />
+    <script src="/js/metadata-parser.js" defer></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/lunaradio.min.js" defer></script>
+    <style>
+      * {
+        scale: initial;
+        zoom: 0;
+      }
+    </style>
   </head>
 
   <body
@@ -29,24 +37,81 @@
     "
   >
     <div
-      id="lunaradio"
+      id="anti-zoom-wrapper"
       style="
-        width: 100%;
-        height: 100%;
-        background-image: url('https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/img/FONDO.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        border-radius: none;
-        border: none;
-        max-width: 600px;
-        max-height: 911px;
-        margin: 0 auto;
+        width: 100dvw;
+        height: 100dvh;
+        min-width: 100dvw;
+        min-height: 100dvh;
       "
-    ></div>
+    >
+      <div
+        style="
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          box-sizing: border-box;
+          top: 55%;
+          left: calc(50% - 200px);
+          max-width: 400px;
+          max-height: 50px;
+          display: flex;
+          align-content: center;
+          place-content: center;
+          text-align: center;
+          margin: 0 auto;
+          flex-wrap: nowrap;
+          color: white;
+          justify-content: center;
+          align-items: center;
+          z-index: 6;
+        "
+      >
+        <marquee
+          style="
+            display: flex;
+            width: 100%;
+            height: 100%;
+            border: none;
+            max-width: 90%;
+            margin: 0px;
+            font-family: system-ui, sans-serif;
+            align-items: center;
+            max-height: 50px;
+            overflow: hidden;
+            margin: 0 auto;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 0px 0px 8px yellow, 0px 0px 10px red;
+          "
+          behavior="scroll"
+          direction="left"
+          class="cc_streaminfo"
+          data-type="song"
+        ></marquee>
+      </div>
 
-    <!-- <div id="lunaradio" style="width: 100%; height: 10vh"></div> -->
+      <div
+        id="lunaradio"
+        style="
+          width: 100vw;
+          width: 100dvw;
+          height: 100vh;
+          height: 100dvh;
+          background-image: url('https://raw.githubusercontent.com/36095/la-voz-del-aire-app/main/img/FONDO.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: none;
+          border: none;
+          max-width: 600px;
+          max-height: 911px;
+          margin: 0 auto;
+        "
+      ></div>
 
+      <!-- <div id="lunaradio" style="width: 100%; height: 10vh"></div> -->
+    </div>
     <script defer>
       window.addEventListener('load', function () {
         lunaRadio('lunaradio', {
@@ -95,10 +160,34 @@
         });
       });
     </script>
-    <script
+    <!-- <script
       src="/js/rocket-loader.min.js"
       data-cf-settings="3bc5e4e5245e387f3290c38f-|49"
-      defer
-    ></script>
+    ></script> -->
+
+    <script>
+      $(document).keydown(function (event) {
+        if (
+          event.ctrlKey == true &&
+          (event.which == '61' ||
+            event.which == '107' ||
+            event.which == '173' ||
+            event.which == '109' ||
+            event.which == '187' ||
+            event.which == '189')
+        ) {
+          event.preventDefault();
+        }
+      });
+
+      $('#anti-zoom-wrapper').bind(
+        'mousewheel DOMMouseScroll',
+        function (event) {
+          if (event.ctrlKey == true) {
+            event.preventDefault();
+          }
+        }
+      );
+    </script>
   </body>
 </html>
