@@ -1,0 +1,49 @@
+{
+  "name": "Radio La Voz Del Aire",
+  "short_name": "La Voz Del Aire",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "img/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "16x16 32x32"
+    },
+    { "src": "img/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "img/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    {
+      "src": "img/icon-192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "img/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "img/icon-192-maskable.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    },
+    {
+      "src": "img/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "172x172",
+      "purpose": "maskable"
+    },
+    {
+      "src": "img/ic_launcher_round_monochrome.png",
+      "type": "image/png",
+      "sizes": "172x172",
+      "purpose": "monochrome"
+    }
+  ]
+}

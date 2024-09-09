@@ -25,8 +25,8 @@ eventSource.addEventListener('message', (event) => {
   if (data.streamTitle) {
     if ($songElement) $songElement.textContent = `${data.streamTitle}`;
     if ($songElement2) $songElement2.textContent = `${data.streamTitle}`;
-    if ($htmlTitle)
-      $htmlTitle.textContent = `La Voz Del Aire — ${data.streamTitle}`;
+    // if ($htmlTitle)
+    //   $htmlTitle.textContent = `La Voz Del Aire — ${data.streamTitle}`;
   }
   if ($imgElement === 'none' || !$imgElement) {
     return;

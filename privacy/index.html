@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Voz Del Aire — Política de Privacidad</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+          sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        padding: 0;
+        color: #333;
+      }
+      h1 {
+        color: #0056b3;
+      }
+      h2 {
+        color: #004080;
+      }
+      p {
+        margin: 10px 0;
+      }
+      a {
+        color: #0056b3;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style> -->
+    <script>
+      /*!
+       * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+       * Copyright 2011-2024 The Bootstrap Authors
+       * Licensed under the Creative Commons Attribution 3.0 Unported License.
+       */
+
+      (() => {
+        'use strict';
+
+        const getStoredTheme = () => localStorage.getItem('theme');
+        const setStoredTheme = (theme) => localStorage.setItem('theme', theme);
+
+        const getPreferredTheme = () => {
+          const storedTheme = getStoredTheme();
+          if (storedTheme) {
+            return storedTheme;
+          }
+
+          return window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        };
+
+        const setTheme = (theme) => {
+          if (theme === 'auto') {
+            document.documentElement.setAttribute(
+              'data-bs-theme',
+              window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+            );
+          } else {
+            document.documentElement.setAttribute('data-bs-theme', theme);
+          }
+        };
+
+        setTheme(getPreferredTheme());
+
+        const showActiveTheme = (theme, focus = false) => {
+          const themeSwitcher = document.querySelector('#bd-theme');
+
+          if (!themeSwitcher) {
+            return;
+          }
+
+          const themeSwitcherText = document.querySelector('#bd-theme-text');
+          const activeThemeIcon = document.querySelector(
+            '.theme-icon-active use'
+          );
+          const btnToActive = document.querySelector(
+            `[data-bs-theme-value="${theme}"]`
+          );
+          const svgOfActiveBtn = btnToActive
+            .querySelector('svg use')
+            .getAttribute('href');
+
+          document
+            .querySelectorAll('[data-bs-theme-value]')
+            .forEach((element) => {
+              element.classList.remove('active');
+              element.setAttribute('aria-pressed', 'false');
+            });
+
+          btnToActive.classList.add('active');
+          btnToActive.setAttribute('aria-pressed', 'true');
+          activeThemeIcon.setAttribute('href', svgOfActiveBtn);
+          const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+          themeSwitcher.setAttribute('aria-label', themeSwitcherLabel);
+
+          if (focus) {
+            themeSwitcher.focus();
+          }
+        };
+
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', () => {
+            const storedTheme = getStoredTheme();
+            if (storedTheme !== 'light' && storedTheme !== 'dark') {
+              setTheme(getPreferredTheme());
+            }
+          });
+
+        window.addEventListener('DOMContentLoaded', () => {
+          showActiveTheme(getPreferredTheme());
+
+          document
+            .querySelectorAll('[data-bs-theme-value]')
+            .forEach((toggle) => {
+              toggle.addEventListener('click', () => {
+                const theme = toggle.getAttribute('data-bs-theme-value');
+                setStoredTheme(theme);
+                setTheme(theme);
+                showActiveTheme(theme, true);
+              });
+            });
+        });
+      })();
+    </script>
+    <script src="/js/bootstrap.bundle.min.js" defer></script>
+  </head>
+  <body class="container container-md container-lg container-xl container-xxl">
+    <header>
+      <nav
+        class="navbar navbar-dark fixed-top border-bottom border-1"
+        style="backdrop-filter: blur(20px)"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">La Voz Del Aire</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="offcanvas offcanvas-end text-bg-dark"
+            tabindex="-1"
+            id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                Menú
+              </h5>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/"
+                    >Inicio</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/privacy">Política de Privacidad</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Opciones
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <form class="d-flex mt-3" role="search">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-5 mt-5">
+      <header class="d-flex flex-column align-items-center">
+        <h1>Política de Privacidad</h1>
+        <p><strong>Última actualización:</strong> 4 de Septiembre 2024</p>
+        <hr />
+      </header>
+      <section
+        class="col-6 justify-content-center mx-auto align-items-center d-flex flex-column"
+      >
+        <h2 class="h3 pb-2 mt-3 mb-5 border-bottom border-2 text-center w-100">
+          1. Recopilación de Información
+        </h2>
+        <p>
+          No recopilamos datos personales identificables de los usuarios. Sin
+          embargo, recopilamos datos de uso, tales como:
+        </p>
+        <ul class="w-100">
+          <li>Tiempo de escucha.</li>
+          <li>País del usuario, basado en la dirección IP pública.</li>
+        </ul>
+
+        <h2>2. Uso de Cookies</h2>
+        <p>
+          Nuestra aplicación utiliza cookies proporcionadas por nuestro
+          proveedor de servicios de radio online,
+          <a href="https:/zeno.fm" target="_blank" rel="noopener noreferrer"
+            >Zeno.fm</a
+          >, para fines analíticos. No utilizamos cookies propias.
+        </p>
+
+        <h2>3. Publicidad</h2>
+        <p>
+          Nuestra aplicación puede mostrar publicidad gestionada exclusivamente
+          por Zeno.fm. Nosotros no obtenemos ninguna ganancia de esta
+          publicidad, que es proporcionada por terceros afiliados con nuestro
+          proveedor.
+        </p>
+
+        <h2>4. Almacenamiento de Datos</h2>
+        <p>
+          No almacenamos ningún dato personal o vinculado de los usuarios en
+          nuestros sistemas. Toda la gestión de datos es manejada por nuestro
+          proveedor,
+          <a href="https:/zeno.fm" target="_blank" rel="noopener noreferrer"
+            >Zeno.fm</a
+          >.
+        </p>
+
+        <h2>5. Derechos de los Usuarios</h2>
+        <p>
+          Los usuarios que deseen ejercer derechos relacionados con la
+          eliminación o manejo de sus datos deben contactar directamente a
+          <a href="https:/zeno.fm" target="_blank" rel="noopener noreferrer"
+            >Zeno.fm</a
+          >.
+        </p>
+
+        <h2>6. Menores de Edad</h2>
+        <p>
+          Nuestra aplicación está dirigida a todo público, incluyendo menores de
+          edad. Para consultas sobre la gestión de datos de menores, los
+          usuarios deben dirigirse a nuestro proveedor,
+          <a href="https:/zeno.fm" target="_blank" rel="noopener noreferrer"
+            >Zeno.fm</a
+          >.
+        </p>
+
+        <h2>7. Cambios en la Política de Privacidad</h2>
+        <p>
+          Nos reservamos el derecho de modificar esta política de privacidad en
+          cualquier momento sin previo aviso. Recomendamos a los usuarios
+          revisar esta política con frecuencia.
+        </p>
+
+        <h2>8. Contacto</h2>
+        <p>
+          Si tienes alguna pregunta o inquietud sobre esta política de
+          privacidad, puedes contactarnos a través de nuestro formulario de
+          contacto en
+          <a href="/contacto">/contacto</a>.
+        </p>
+        <p>
+          Puedes encontrar la política de privacidad de Zeno.fm en el siguiente
+          <a
+            href="https:/zeno.fm/privacy.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >enlace</a
+          >.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
