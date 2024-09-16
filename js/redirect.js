@@ -1,5 +1,6 @@
 // URL de destino
 const destination = 'https://tunc.cl';
+const isDev = false;
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
@@ -18,8 +19,10 @@ function redirectIfMatch(url) {
   // Verificar si es una dirección IP o termina en .pages.dev
   if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
     const newURL = `${destination}${pathname}`;
-    console.log('Redirigiendo a:', newURL);
-    window.location.replace(newURL); // Simula redirección 301
+    if (!isDev) {
+      console.log('Redirigiendo a:', newURL);
+      window.location.replace(newURL); // Simula redirección 301
+    }
   } else {
     console.log('La URL no coincide con los criterios.');
   }
