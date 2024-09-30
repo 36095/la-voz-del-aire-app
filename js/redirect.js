@@ -36,49 +36,41 @@ function removeUnwantedParams(url) {
   return urlObj;
 }
 
-// Función para redirigir si estamos en producción
+// Función para redirigir a la misma URL sin los query params
+function redirectToSameURLWithoutParams(cleanedURL) {
+  console.log('Redirigiendo a la misma URL sin query params:', cleanedURL);
+  window.location.replace(cleanedURL);
+}
+
+// Función para redirigir a la URL de destino en producción
 function redirectToDestination(pathname) {
   const newURL = `${destination}${pathname}`;
   console.log('Redirigiendo a producción:', newURL);
   window.location.replace(newURL);
 }
 
-// Función principal que maneja la lógica de redirección y eliminación de query params
+// Función principal que maneja la lógica de eliminación de query params y redirección
 function handleRedirect(url) {
   const urlObj = new URL(url);
   const hostname = urlObj.hostname;
   const pathname = urlObj.pathname;
 
-  // Siempre eliminar los query params no deseados si están presentes
+  // Primero, eliminar los query params no deseados si están presentes
   if (hasUnwantedParams(url)) {
     const cleanedURLObj = removeUnwantedParams(url);
     const cleanedURL = `${window.location.origin}${pathname}${cleanedURLObj.search}`;
 
-    if (!isDev) {
-      // Si estamos en producción, verificar si el host coincide con los criterios antes de redirigir
-      if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
-        redirectToDestination(pathname); // Redirigir a destino si es una IP o dominio pages.dev
-      } else {
-        console.log(
-          'Producción: Redirigiendo a la misma URL sin query params no deseados.'
-        );
-        window.location.replace(cleanedURL); // Redirigir a la misma URL sin los query params
-      }
+    // Redirigir primero a la misma URL sin query params
+    redirectToSameURLWithoutParams(cleanedURL);
+  } else if (!isDev) {
+    // Si estamos en producción, redirigir a la URL de destino si coincide con los criterios
+    if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
+      redirectToDestination(pathname);
     } else {
-      // En desarrollo, simplemente redirigir a la misma URL sin los query params
-      console.log(
-        'Modo desarrollo: Redirigiendo a la misma URL sin query params no deseados.'
-      );
-      window.location.replace(cleanedURL);
+      console.log('Producción: No se necesita redirección a otro host.');
     }
-  } else if (
-    !isDev &&
-    (ipRegex.test(hostname) || pagesDevRegex.test(hostname))
-  ) {
-    // Si estamos en producción, siempre redirigir al destino si el host coincide
-    redirectToDestination(pathname);
   } else {
-    console.log('No se necesita redirección.');
+    console.log('Desarrollo: No se necesita redirección.');
   }
 }
 
