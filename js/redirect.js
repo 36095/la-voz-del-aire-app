@@ -6,7 +6,7 @@ const destination = 'https://tunc.cl';
  *
  * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliague
  */
-const isDev = false;
+const isDev = false; // Cambia a false en producción
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
@@ -43,33 +43,42 @@ function redirectToDestination(pathname) {
   window.location.replace(newURL);
 }
 
-// Función principal que maneja la lógica de redirección
-function redirectIfMatch(url) {
+// Función principal que maneja la lógica de redirección y eliminación de query params
+function handleRedirect(url) {
   const urlObj = new URL(url);
   const hostname = urlObj.hostname;
   const pathname = urlObj.pathname;
 
-  // Si hay query params no deseados, limpiarlos
+  // Siempre eliminar los query params no deseados si están presentes
   if (hasUnwantedParams(url)) {
     const cleanedURLObj = removeUnwantedParams(url);
+    const cleanedURL = `${window.location.origin}${pathname}${cleanedURLObj.search}`;
 
     if (!isDev) {
-      // Redirigir a la URL de destino sin query params en producción
-      redirectToDestination(pathname);
+      // Si estamos en producción, verificar si el host coincide con los criterios antes de redirigir
+      if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
+        redirectToDestination(pathname); // Redirigir a destino si es una IP o dominio pages.dev
+      } else {
+        console.log(
+          'Producción: Redirigiendo a la misma URL sin query params no deseados.'
+        );
+        window.location.replace(cleanedURL); // Redirigir a la misma URL sin los query params
+      }
     } else {
-      // Redirigir en desarrollo al mismo host sin query params
-      const cleanedURL = `${window.location.origin}${pathname}${cleanedURLObj.search}`;
-      console.log('Modo desarrollo: Redirigiendo a:', cleanedURL);
+      // En desarrollo, simplemente redirigir a la misma URL sin los query params
+      console.log(
+        'Modo desarrollo: Redirigiendo a la misma URL sin query params no deseados.'
+      );
       window.location.replace(cleanedURL);
     }
+  } else if (
+    !isDev &&
+    (ipRegex.test(hostname) || pagesDevRegex.test(hostname))
+  ) {
+    // Si estamos en producción, siempre redirigir al destino si el host coincide
+    redirectToDestination(pathname);
   } else {
-    // Si no hay query params no deseados
-    if (!isDev) {
-      // Siempre redirigir a la URL de destino en producción
-      redirectToDestination(pathname);
-    } else {
-      console.log('Modo desarrollo: No se necesita redirección.');
-    }
+    console.log('No se necesita redirección.');
   }
 }
 
@@ -77,7 +86,7 @@ function redirectIfMatch(url) {
 const urlObj = new URL(inputURL);
 if (urlObj.search || !isDev) {
   // Llamar a la función si hay query params o estamos en producción
-  redirectIfMatch(inputURL);
+  handleRedirect(inputURL);
 } else {
   console.log('La URL no tiene query params, y no estamos en producción.');
 }
