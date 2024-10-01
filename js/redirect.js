@@ -6,7 +6,7 @@ const destination = 'https://tunc.cl';
  *
  * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliague
  */
-const isDev = true; // Cambia a false en producción
+const isDev = false; // Cambia a false en producción
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
