@@ -6,7 +6,7 @@ const destination = 'https://tunc.cl';
  *
  * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliague
  */
-const isDev = false; // Cambia a false en producción
+const isDev = true; // Cambia a false en producción
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
@@ -38,14 +38,14 @@ function removeUnwantedParams(url) {
 
 // Función para redirigir a la misma URL sin los query params
 function redirectToSameURLWithoutParams(cleanedURL) {
-  console.log('Redirigiendo a la misma URL sin query params:', cleanedURL);
+  // console.log('Redirigiendo a la misma URL sin query params:', cleanedURL);
   window.location.replace(cleanedURL);
 }
 
 // Función para redirigir a la URL de destino en producción
 function redirectToDestination(pathname) {
   const newURL = `${destination}${pathname}`;
-  console.log('Redirigiendo a producción:', newURL);
+  // console.log('Redirigiendo a producción:', newURL);
   window.location.replace(newURL);
 }
 
@@ -66,12 +66,12 @@ function handleRedirect(url) {
     // Si estamos en producción, redirigir a la URL de destino si coincide con los criterios
     if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
       redirectToDestination(pathname);
-    } else {
+    } /* else {
       console.log('Producción: No se necesita redirección a otro host.');
-    }
-  } else {
+    } */
+  } /* else {
     console.log('Desarrollo: No se necesita redirección.');
-  }
+  } */
 }
 
 // Comprobación inicial de query params
@@ -79,6 +79,6 @@ const urlObj = new URL(inputURL);
 if (urlObj.search || !isDev) {
   // Llamar a la función si hay query params o estamos en producción
   handleRedirect(inputURL);
-} else {
+} /* else {
   console.log('La URL no tiene query params, y no estamos en producción.');
-}
+} */
