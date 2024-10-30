@@ -1,0 +1,236 @@
+.popup,
+.popup * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+::selection {
+  color: #fff;
+  background: #7d2ae8;
+}
+.popup {
+  position: fixed;
+  left: 50%;
+  z-index: 999;
+}
+button {
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: background 0.1s linear, border-color 0.1s linear,
+    color 0.1s linear;
+}
+.popup {
+  border: 1px solid #ccc;
+  background: rgb(255, 254, 254);
+  padding: 25px;
+  border-radius: 15px;
+  top: 10%;
+  left: 50%;
+  max-width: 380px;
+  width: 80%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: top 0s 0.2s ease-in-out, opacity 0.2s 0s ease-in-out,
+    transform 0.2s 0s ease-in-out;
+}
+.popup.show {
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0s 0s ease-in-out, opacity 0.2s 0s ease-in-out,
+    transform 0.2s 0s ease-in-out;
+}
+.popup :is(header, .icons, .field) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ebedf9;
+}
+header span {
+  font-size: 21px;
+  font-weight: 600;
+}
+header .close,
+.icons a {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+header .close {
+  color: #878787;
+  font-size: 17px;
+  background: #f3f3f3;
+  height: 33px;
+  width: 33px;
+  cursor: pointer;
+}
+header .close:hover {
+  background: #ebedf9;
+}
+.popup .content {
+  margin: 20px 0;
+}
+.popup .icons {
+  margin: 15px 0 20px 0;
+}
+.content p {
+  font-size: 16px;
+}
+.content .icons a {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid;
+}
+.icons a i {
+  transition: transform 0.3s ease-in-out;
+}
+.icons a:has(.fa-facebook-f) {
+  color: #1877f2;
+  border-color: #b7d4fb;
+}
+.icons a:has(.fa-facebook-f):hover {
+  background: #1877f2;
+}
+.icons a:has(.fa-x-twitter) {
+  color: #333;
+  border-color: #cccccc;
+}
+.icons a:has(.fa-x-twitter):hover {
+  background: #3b3b3b;
+}
+.icons a:has(.uil-share-alt) {
+  color: #437183;
+  border-color: #b9d9e6;
+}
+.icons a:has(.uil-share-alt):hover {
+  background: #56a3c2;
+}
+.icons a:has(.fa-instagram) {
+  color: #e1306c;
+  border-color: #f5bccf;
+}
+.icons a:has(.fa-instagram):hover {
+  background: #e1306c;
+}
+.icons a:has(.fa-whatsapp) {
+  color: #25d366;
+  border-color: #bef4d2;
+}
+.icons a:has(.fa-whatsapp):hover {
+  background: #25d366;
+}
+.icons a:has(.fa-telegram) {
+  color: #0088cc;
+  border-color: #b3e6ff;
+}
+.icons a:has(.fa-telegram):hover {
+  background: #0088cc;
+}
+.icons a:hover {
+  color: #fff;
+  border-color: transparent;
+}
+.icons a:hover i {
+  transform: scale(1.2);
+}
+.content .field {
+  margin: 12px 0 -5px 0;
+  height: 45px;
+  border-radius: 4px;
+  padding: 0 5px;
+  border: 1px solid #757171;
+}
+.field.active {
+  border-color: #7d2ae8;
+}
+.field i {
+  width: 50px;
+  font-size: 18px;
+  text-align: center;
+}
+.field.active i {
+  color: #7d2ae8;
+}
+.field input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+.field button {
+  color: #fff;
+  padding: 5px 18px;
+  background: #7d2ae8;
+}
+.field button:hover {
+  background: #8d39fa;
+}
+
+/* ? Pulse */
+
+.pulse {
+  position: absolute;
+  color: #fff;
+  text-decoration: none;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 999;
+  width: 3rem;
+  max-width: 3.5rem;
+  height: 3rem;
+  max-height: 3.5rem;
+  display: block;
+  font-size: 1.8rem;
+  span {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.blob {
+  background: rgba(37, 170, 211, 1);
+  border-radius: 50%;
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scale(1);
+  box-shadow: 0 0 0 0 rgba(37, 170, 211, 1);
+  animation: pulse-green 1.5s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 170, 211, 0.8);
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(37, 170, 211, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 170, 211, 0);
+  }
+}

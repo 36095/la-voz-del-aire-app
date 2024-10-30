@@ -4,7 +4,7 @@ const destination = 'https://tunc.cl';
  * !! **importante:** Cambia a false en producción
  * @type {boolean}
  *
- * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliague
+ * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliegue
  */
 const isDev = false; // Cambia a false en producción
 
@@ -64,7 +64,10 @@ function handleRedirect(url) {
     redirectToSameURLWithoutParams(cleanedURL);
   } else if (!isDev) {
     // Si estamos en producción, redirigir a la URL de destino si coincide con los criterios
-    if (ipRegex.test(hostname) || pagesDevRegex.test(hostname)) {
+    if (
+      ipRegex.test(hostname) ||
+      (pagesDevRegex.test(hostname) && hostname !== '127.0.0.1:5501')
+    ) {
       redirectToDestination(pathname);
     } /* else {
       console.log('Producción: No se necesita redirección a otro host.');
