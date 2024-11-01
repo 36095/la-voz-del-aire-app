@@ -1,32 +1,12 @@
-// URL de destino
+// URL de destino para producción
 const destination = 'https://tunc.cl';
-/**
- * !! **importante:** Cambia a false en producción
- * @type {boolean}
- *
- * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliegue
- */
-let isDev;
-try {
-  if (!import.meta.env.ENVIRONMENT) {
-    console.warn(
-      'No se ha definido la variable de entorno de NODE_ENV o ENVIRONMENT. Se usará el valor por defecto: true'
-    );
-    isDev = import.meta.env.ENVIRONMENT !== 'production' || true; // Cambia a false en producción
-  }
-} catch (e) {
-  isDev = false;
-  console.warn(
-    'No se ha definido la variable de entorno de NODE_ENV o ENVIRONMENT. Se usará el valor por defecto: true'
-  );
-}
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
 
 // Expresiones regulares para verificar las condiciones
 const ipRegex =
-  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(:\d+)?$/;
+  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9][0-9]?)(:\d+)?$/;
 const pagesDevRegex = /^.*\.pages\.dev/;
 const unwantedQueryParams = [
   'fbclid',
@@ -35,6 +15,22 @@ const unwantedQueryParams = [
   'utm_campaign',
   'igshid',
 ]; // Parámetros no deseados
+
+// Detectar si el hostname pertenece a un entorno local
+const isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(
+  window.location.hostname
+);
+const isDev = isLocalHost;
+
+if (isDev) {
+  console.info(
+    'Entorno local detectado: no se redirigirá al entorno de producción.\nHTTP: 304'
+  );
+} else {
+  console.info(
+    'No se ha detectado el entorno local, se redirigirá al entorno de producción.\nHTTP: 308'
+  );
+}
 
 // Función para verificar si la URL tiene query params no deseados
 function hasUnwantedParams(url) {
@@ -51,14 +47,12 @@ function removeUnwantedParams(url) {
 
 // Función para redirigir a la misma URL sin los query params
 function redirectToSameURLWithoutParams(cleanedURL) {
-  // console.log('Redirigiendo a la misma URL sin query params:', cleanedURL);
   window.location.replace(cleanedURL);
 }
 
 // Función para redirigir a la URL de destino en producción
 function redirectToDestination(pathname) {
   const newURL = `${destination}${pathname}`;
-  // console.log('Redirigiendo a producción:', newURL);
   window.location.replace(newURL);
 }
 
@@ -82,12 +76,8 @@ function handleRedirect(url) {
       (pagesDevRegex.test(hostname) && hostname !== '127.0.0.1:5501')
     ) {
       redirectToDestination(pathname);
-    } /* else {
-      console.log('Producción: No se necesita redirección a otro host.');
-    } */
-  } /* else {
-    console.log('Desarrollo: No se necesita redirección.');
-  } */
+    }
+  }
 }
 
 // Comprobación inicial de query params
@@ -95,6 +85,4 @@ const urlObj = new URL(inputURL);
 if (urlObj.search || !isDev) {
   // Llamar a la función si hay query params o estamos en producción
   handleRedirect(inputURL);
-} /* else {
-  console.log('La URL no tiene query params, y no estamos en producción.');
-} */
+}
