@@ -6,9 +6,16 @@ const destination = 'https://tunc.cl';
  *
  * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliegue
  */
-let isDev = process.env.ENVIRONMENT !== "production"|| true; // Cambia a false en producción
-
-if (!process.env.ENVIRONMENT) {
+let isDev;
+try {
+  if (!import.meta.env.ENVIRONMENT) {
+    console.warn(
+      'No se ha definido la variable de entorno de NODE_ENV o ENVIRONMENT. Se usará el valor por defecto: true'
+    );
+    isDev = import.meta.env.ENVIRONMENT !== 'production' || true; // Cambia a false en producción
+  }
+} catch (e) {
+  isDev = false;
   console.warn(
     'No se ha definido la variable de entorno de NODE_ENV o ENVIRONMENT. Se usará el valor por defecto: true'
   );
