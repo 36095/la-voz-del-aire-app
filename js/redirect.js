@@ -6,7 +6,13 @@ const destination = 'https://tunc.cl';
  *
  * MEMO: usar una variable de entorno para no tener que cambiar esto en cada despliegue
  */
-const isDev = false; // Cambia a false en producción
+let isDev = process.env.ENVIRONMENT !== "production"|| true; // Cambia a false en producción
+
+if (!process.env.ENVIRONMENT) {
+  console.warn(
+    'No se ha definido la variable de entorno de NODE_ENV o ENVIRONMENT. Se usará el valor por defecto: true'
+  );
+}
 
 // Recuperar la URL actual del cliente
 const inputURL = window.location.href;
