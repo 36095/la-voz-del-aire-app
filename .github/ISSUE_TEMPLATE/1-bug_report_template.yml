@@ -1,0 +1,67 @@
+---
+name: Informe de error
+description: Crear un informe de errores para ayudarnos a mejorar
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe el error
+      placeholder: Una descripción clara y concisa de lo que es el error.
+    validations:
+      required: true
+  - type: textarea
+    id: bug-reproduction
+    attributes:
+      label: Pasos para reproducir el comportamiento
+      placeholder: Una lista de pasos para reproducir el error descrito.
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navegador # Chrome - Edge - Firefox - Opera - Safari - Brave - Otro (Especificar)
+      description: ¿Qué navegador estás usando?
+      multiple: true
+      options:
+        - Amigo (MRCHROME)
+        - Android Browser
+        - Brave
+        - Chrome
+        - Edge
+        - Edge for Android
+        - Firefox
+        - Opera
+        - Opera Mobile
+        - Internet Explorer
+        - iOS Browser
+        - KaiOS Browser
+        - Pale Moon
+        - Safari
+        - Samsung Internet
+        - Silk
+        - UC Browser
+        - Vivaldi
+        - Waterfox
+        - Yandex Browser
+        - Otro
+        - type: input
+          id: other-browser
+          attributes:
+            label: Otro
+            description: Especifique qué otro navegador usa.
+    validations:
+      required: true
+  - type: input
+    id: type
+    attributes:
+      label: Otros Navegadores
+      description: Especifique qué otro navegador usa. (Requerido si se eligió 'Otro')
+    validations:
+      required: false
+  - type: input
+    id: country
+    attributes:
+      label: País
+      description: ¿De qué país estás intentando acceder?
+    validations:
+      required: true
