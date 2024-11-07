@@ -44,11 +44,6 @@ body:
         - Waterfox
         - Yandex Browser
         - Otro
-        - type: input
-          id: other-browser
-          attributes:
-            label: Otro
-            description: Especifique qué otro navegador usa.
     validations:
       required: true
   - type: input
