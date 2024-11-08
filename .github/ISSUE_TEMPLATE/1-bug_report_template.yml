@@ -1,6 +1,9 @@
 ---
 name: Informe de error
 description: Crear un informe de errores para ayudarnos a mejorar
+title: '[Bug] <Error>'
+assignees: '36095'
+labels: [bug]
 body:
   - type: textarea
     id: bug-description
@@ -9,6 +12,7 @@ body:
       placeholder: Una descripción clara y concisa de lo que es el error.
     validations:
       required: true
+
   - type: textarea
     id: bug-reproduction
     attributes:
@@ -16,47 +20,134 @@ body:
       placeholder: Una lista de pasos para reproducir el error descrito.
     validations:
       required: true
+
   - type: dropdown
     id: browser
     attributes:
-      label: Navegador # Chrome - Edge - Firefox - Opera - Safari - Brave - Otro (Especificar)
+      label: Navegador
       description: ¿Qué navegador estás usando?
       multiple: true
       options:
         - Amigo (MRCHROME)
         - Android Browser
+        - Avast Secure Browser
+        - Baidu Browser
         - Brave
         - Chrome
+        - Chrome Mobile
+        - Chrome for iOS
+        - CM Browser
+        - Cốc Cốc
+        - Dolphin Browser
         - Edge
+        - Edge Mobile
         - Edge for Android
+        - Epiphany (GNOME Web)
         - Firefox
-        - Opera
-        - Opera Mobile
+        - Firefox Focus
+        - Firefox Mobile
+        - Firefox for iOS
+        - Ghostery Privacy Browser
         - Internet Explorer
         - iOS Browser
         - KaiOS Browser
+        - Konqueror
+        - Maxthon
+        - Mi Browser
+        - Midori
+        - Mint Browser
+        - Naver Whale
+        - Opera
+        - Opera Mobile
+        - Opera Mini
         - Pale Moon
+        - Phoenix Browser
+        - Puffin
+        - QQ Browser
         - Safari
+        - Safari for iOS
         - Samsung Internet
+        - Seamonkey
         - Silk
+        - Sogou Explorer
+        - Tencent QQ Browser
         - UC Browser
+        - UC Mini
         - Vivaldi
         - Waterfox
         - Yandex Browser
         - Otro
     validations:
       required: true
+
   - type: input
-    id: type
+    id: other-browser
     attributes:
-      label: Otros Navegadores
-      description: Especifique qué otro navegador usa. (Requerido si se eligió 'Otro')
+      label: Especificar otro navegador
+      description: Especifique el navegador si seleccionó 'Otro' en la lista anterior.
     validations:
       required: false
-  - type: input
-    id: country
+
+  - type: dropdown
+    id: os
     attributes:
-      label: País
-      description: ¿De qué país estás intentando acceder?
+      label: Sistema operativo
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - iOS
+        - Android
+        - Otro
+    validations:
+      required: true
+
+  - type: input
+    id: other-os
+    attributes:
+      label: Especificar otro sistema operativo
+      description: Especifique el sistema operativo si seleccionó 'Otro' en la lista anterior.
+    validations:
+      required: false
+
+  - type: input
+    id: app-version
+    attributes:
+      label: Versión de la aplicación
+      description: ¿Qué versión de la aplicación estás usando? (o la última actualización recibida)
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Comportamiento esperado
+      placeholder: Describe el comportamiento que esperabas ver.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Comportamiento actual
+      placeholder: Describe lo que ocurre realmente cuando se presenta el error.
+    validations:
+      required: true
+
+  - type: file
+    id: attachments
+    attributes:
+      label: Capturas de pantalla o archivos adjuntos
+      description: Sube capturas de pantalla o archivos relevantes que puedan ayudar a entender el problema.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Impacto del error
+      options:
+        - Bajo: No afecta el funcionamiento normal
+        - Medio: Afecta parcialmente el uso
+        - Alto: Bloquea funcionalidades críticas
+        - Urgente: Hace la aplicación inusable
     validations:
       required: true
