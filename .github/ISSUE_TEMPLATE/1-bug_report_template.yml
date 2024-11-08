@@ -134,12 +134,6 @@ body:
     validations:
       required: true
 
-  - type: file
-    id: attachments
-    attributes:
-      label: Capturas de pantalla o archivos adjuntos
-      description: Sube capturas de pantalla o archivos relevantes que puedan ayudar a entender el problema.
-
   - type: dropdown
     id: priority
     attributes:
