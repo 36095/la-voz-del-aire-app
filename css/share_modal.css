@@ -96,6 +96,7 @@ header .close:hover {
   font-size: 20px;
   text-decoration: none;
   border: 1px solid;
+  cursor: pointer;
 }
 .icons a i {
   transition: transform 0.3s ease-in-out;

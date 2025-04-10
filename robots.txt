@@ -1,4 +1,10 @@
 User-agent: *
-Disallow:
+Disallow: /download/
+Allow: /radio/
+Allow: /privacy/
+Allow: /sitemap.xml
+
+User-agent: Googlebot
+Disallow: /download/
 
 Sitemap: https://tunc.cl/sitemap.xml

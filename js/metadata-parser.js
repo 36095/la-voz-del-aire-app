@@ -1,8 +1,8 @@
 const METADATA_URL =
   'https://api.zeno.fm/mounts/metadata/subscribe/dd1qw8bvbmavv';
-const SONG_TITLE_ELEMENT = 'div>marquee.cc_streaminfo[data-type="song"]';
-const SONG_TITLE_ELEMENT2 = 'div>marquee.cc_streaminfo2[data-type="song"]';
-const SONG_COVER_ELEMENT = 'none';
+const SONG_TITLE_ELEMENT = 'div>.cc_streaminfo[data-type="song"]';
+const SONG_TITLE_ELEMENT2 = 'div>.cc_streaminfo2[data-type="song"]';
+const SONG_COVER_ELEMENT = '.cover-img-container';
 
 const eventSource = new EventSource(METADATA_URL);
 
@@ -32,7 +32,27 @@ eventSource.addEventListener('message', (event) => {
   } else {
     if (data.streamTitle) {
       const normalizedTitle = normalizeTitle(data.streamTitle);
-      $imgElement.src = `../img/covers/${normalizedTitle}.png`;
+      const extensions = ['jpg', 'png'];
+
+      Promise.allSettled(
+        extensions.map((ext) =>
+          fetch(`/img/local-covers/${normalizedTitle}.${ext}`)
+        )
+      ).then((results) => {
+        for (let i = 0; i < results.length; i++) {
+          if (
+            results[i].status === 'fulfilled' &&
+            results[i].value.status === 200
+          ) {
+            $imgElement.src = `/img/local-covers/${normalizedTitle}.${extensions[i]}`;
+            return;
+          }
+        }
+        console.error(
+          `Error fetching cover for "${normalizedTitle}": No valid image found`
+        );
+        $imgElement.src = '/img/colorful_logo_256x256.webp'; // Imagen por defecto
+      });
     }
   }
 });
